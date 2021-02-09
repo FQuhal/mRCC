@@ -1,0 +1,16 @@
+library(meta)
+library(netmeta)
+me<- read.csv(file.choose())
+mep <- pairwise(drug, ea, na, studlab = Author,data = me, sm = "OR")
+mep
+menetmeta <- netmeta(mep)
+tiff(file="D:/RDCC/SPSS/Dr Anaraki/33/me.tiff", width =2300, height =1500,res=180)
+netgraph(menetmeta,scale = 0.80,col = "black",lwd=5,thickness = "number.of.studies",
+         ,multiarm=TRUE,points=TRUE,
+       col.points="black",cex.points=5,number.of.studies = TRUE)   
+dev.off()
+tiff(file="D:/RDCC/SPSS/Dr Anaraki/33/meforest.tiff", width =1900, height =1600,res=180)
+forest(menetmeta,col.random = "black",col.square = "black",col.diamond = "black",ref="Sunitinib")
+dev.off()
+netrank(menetmeta)
+
